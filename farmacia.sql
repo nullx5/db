@@ -15,7 +15,7 @@ CREATE TABLE medicamento(
 	contraindicaciones TEXT,
 	unidad VARCHAR(50),
 	posologia_rec VARCHAR(60),
-	cant_pres INT(5),
+	cant_pres INT(5),    --Cantidad preescrita
 	idlaboratorio INT    -- FOREIGN KEY OF TABLE  laboratorio
 );
 
@@ -136,7 +136,7 @@ CREATE TABLE cliente(
 	n_documento VARCHAR(20)
 );
 
-INSERT INTO cliente (nombres, apellidos, direccion, celular, idtipodoc, idtipocli, correo_e, f_vencimiento, n_documento) VALUES ("Juan Carlos", "Diaz Leon", "calle 17 6-20", "3125678910", 3, 8, "jkld@gmail.com", "2021/09/08", "28678902"),
+INSERT INTO cliente (nombres, apellidos, direccion, celular, idtipodoc, idtipocli, correo_e, f_nacimiento, n_documento) VALUES ("Juan Carlos", "Diaz Leon", "calle 17 6-20", "3125678910", 3, 8, "jkld@gmail.com", "2021/09/08", "28678902"),
 ("Carmen", "Medina", "calle 13 5-21", "3127678415", 2, 6, "carmenmed@gmail.com", "2021/03/09", "28634911"),
 ("Maria ", "Rojas", "calle 10 6-22", "3225779910", 3, 10, "medina@gmail.com", "2021/10/13", "65568909"),
 ("Susana", "Perez", "calle 15 9-28", "3116679916", 1, 5, "susi@gmail.com", "2021/07/18", "24645956"),
@@ -287,3 +287,5 @@ CREATE TABLE receta_medicamento(
 	dosis VARCHAR(30),
 	frecuencia VARCHAR (30)
 );
+
+INSERT INTO receta_medicamento (idmedicamento, cantidad, dosis, frecuencia) VALUES ();
