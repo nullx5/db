@@ -15,7 +15,7 @@ CREATE TABLE medicamento(
 	contraindicaciones TEXT,
 	unidad VARCHAR(50),
 	posologia_rec VARCHAR(60),
-	cant_pres INT(5),    --Cantidad preescrita
+	cant_pres INT(5),
 	idlaboratorio INT    -- FOREIGN KEY OF TABLE  laboratorio
 );
 
@@ -23,7 +23,7 @@ INSERT INTO medicamento (nombre, idtipo, f_ingreso, f_vencimiento, PVP, existenc
 VALUES ("acetaminofen", 13, "2018/06/03", "2020/06/03", 2000, "SI", 17, "lesion renal", 10, "1 cada 8 horas", 20, 4),
 ("amoxicilina", 10,"2018/01/02", "2020/01/02", 4000, "SI", 16, "diarrea-vomito", 10, "1 cada 6 horas", 30, 6),
 ("lomecan", 17, "2018/02/03", "2020/02/03", 20000, "SI", 12, "hipersensibilidad", 10, "1 en la noche", 10, 5),
-("metronidazol", 12, "2018/03/03", "2020/03/03", 3000, "SI", 3, "nauseas,vomito", 10, "1 cada 8 horas", 30, 4),
+("metronidazol", 12, "2018/03/03", "2020/03/03", 3000, "SI", 3, "nauseas,vomito estreñimiento", 10, "1 cada 8 horas", 30, 4),
 ("milanta", 14, "2018/04/06", "2020/04/04", 5000, "SI", 2, "debilidad muscular", 1, "3 veces al dia", 1, 3),
 ("pangetan", 15, "2018/04/05", "2020/04/05", 3000, "SI", 16, "somnolencia, mareos", 10, "1 cada 6 horas", 10, 6),
 ("aspirina", 13, "2018/03/10", "2020/03/10", 1000, "SI", 3, "alergia al componente", 2, "1 cada 8 horas", 10, 8),
@@ -132,7 +132,7 @@ CREATE TABLE cliente(
 	idtipodoc INT,  -- FOREIGN KEY OF TABLE tipo_documento
 	idtipocli INT, -- FOREIGN KEY OF TABLE tipo_ciente
 	correo_e VARCHAR(20),
-	f_vencimiento DATE,
+	f_nacimiento DATE,
 	n_documento VARCHAR(20)
 );
 
@@ -148,14 +148,14 @@ INSERT INTO cliente (nombres, apellidos, direccion, celular, idtipodoc, idtipocl
 ("Blanca", "Gonzalez", "calle 3 9-10", "3505674910", 3, 11, "blanc@gmail.com", "2021/08/17", "54778989"),
 ("Lilia", "Martinez", "cra 8 9-17", "3124870913", 3, 17, "liligo@gmail.com", "2021/12/30", "12278342"),
 ("Giovani", "Agulo", "cra 3 68-12", "3116670967", 3, 12, "giovan@gmail.com", "2021/09/19", "11178953"),
-("Daniela", "Patino", "calle 34 9-33", "3172671918", 3, 14, "dapati@gmail.com", "2021/05/20", "12378432"),
+("Daniela", "Patiño", "calle 34 9-33", "3172671918", 3, 14, "dapati@gmail.com", "2021/05/20", "12378432"),
 ("Laura", "Avila Gomez", "cra 3 9-14", "3129679166", 3, 19, "laus@gmail.com", "2021/03/31", "678789478"),
 ("Sara Sofia", "Henao", "cra 56 92-15", "3125654145", 3, 17, "sarih@gmail.com", "2021/07/22", "67798792"),
 ("Gabriel", "Romero", "calle 35 67 89", "3113738980", 3, 13, "gabo@gmail.com", "2021/04/19", "89778900"),
 ("Ana", "Beltran", "cra 55 67-90", "3124674310", 3, 20, "anabel@gmail.com", "2021/05/24", "111789872"),
 ("Janeth", "Duarte", "calle 37 97-91", "3146370913", 3, 18, "jaduar@gmail.com", "2021/11/11", "67754302"),
 ("Rubiela", "Guzman", "cra 35 67-92", "3125548913", 3, 16, "rubyguz@gmail.com", "2021/09/26", "11111780"),
-("Danna", "Mejia", "calle 65  6-93", "3216773100", 3, 1, "dannasmj@gmail.com", "2021/12/14", "567819654");
+("Danna", "Mejia", "calle 65  6-93", "3216773100", 3, 1, "dannasmj@gmail.com", "2021/10/10", "567819654");
 
 -- TABLA TIPO_DOCUMENTO Y DATOS
 CREATE TABLE tipo_documento(
@@ -258,7 +258,7 @@ CREATE TABLE receta(
 	f_generacion DATE
 );
 
-INSERT INTO receta (idcliente, idmedico, f_generacion) VALUES (5, 4, "2019/09/04"),
+INSERT INTO receta (idcliente, idmedico, f_generacion) VALUES (5, 4, "2019/12/04"),
 (3, 8, "2019/12/04"),
 (7, 2, "2019/11/04"),
 (9, 5, "2019/10/04"),
@@ -285,7 +285,27 @@ CREATE TABLE receta_medicamento(
 	idmedicamento INT, -- FOREIGN KEY OF TABLE  medicamento
 	cantidad INT(4),
 	dosis VARCHAR(30),
-	frecuencia VARCHAR (30)
+	frecuencia VARCHAR (30),
+	idreceta INT  -- FOREIGN KEY OF TABLE  receta
 );
 
-INSERT INTO receta_medicamento (idmedicamento, cantidad, dosis, frecuencia) VALUES ();
+INSERT INTO receta_medicamento (idmedicamento, cantidad, dosis, frecuencia, idreceta) VALUES (10, 16, "2 cucharadas", "cada 8 horas", 7),
+(9, 15, "1 pasta", "cada 6 horas", 8 ),
+(8, 14, "1 inyeccion","1 cada dia", 9),
+(7, 13, "5 gotas", "cada 6 horas", 10),
+(6, 12, "1 cucharada", "cada 8 horas", 11),
+(5, 11, "2 pastillas", "en la noche", 12),
+(4, 10, "1 aplicacion", "cada dia", 13),
+(3, 9, "1 cucharada", "en la noche", 14),
+(2, 8, "1 pastilla", "al dia", 15),
+(1, 7, "2 gotas", "3 veces al dia", 16),
+(11, 6, "1 pastilla", "cada dia", 17),
+(12, 5, "1 cucharada", "cada 5 horas", 18),
+(13, 4, "2 pastillas", "en la noche", 19),
+(14, 3, "3 gotas", "2 veces al dia", 20),
+(15, 2, "1 pastilla", "al dia", 1),
+(17, 1, "i aplicacion", "en la noche", 2),
+(18, 17, "1 cucharada", "al dia", 3),
+(19, 18, "3 pastillas", "cada 6 horas", 4),
+(20, 19, "1 aplicacion", "cada 8 horas", 5),
+(16, 20, "1 cucharada", "cada 3 horas", 6);
