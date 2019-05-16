@@ -159,7 +159,7 @@ INSERT INTO cliente (nombres, apellidos, direccion, celular, idtipodoc, idtipocl
 
 -- TABLA TIPO_DOCUMENTO Y DATOS
 CREATE TABLE tipo_documento(
-	id_tipo_doc INT PRIMARY KEY AUTO_INCREMENT,
+	idtipodoc INT PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(20)
 );
 
