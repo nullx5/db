@@ -1,2 +1,2 @@
 # db
-Mariadb examples
+Mariadb example School DB
